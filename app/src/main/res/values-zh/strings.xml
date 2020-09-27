@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello_message">你好，世界！</string>
-    <string name="ButtonText">我是按钮</string>
-    <string name="app_name">实验-1</string>
+    <string name="Button1">点这里~</string>
+    <string name="app_name">实验-2</string>
+    <string name="GUI">看我的图表</string>
+    <string name="checkBox">看这里！</string>
+    <string name="Switch">切换开/ 关</string>
+    <string name="editText">输入字符</string>
+    <string name="toast_message">更多信息</string>
+    <string name="switch_message1">开</string>
+    <string name="switch_message2">关</string>
+    <string name="undo1">取消</string>
 </resources>
