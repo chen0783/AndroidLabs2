@@ -20,12 +20,12 @@ public class MainActivity extends AppCompatActivity {
         //load your screen
         //setContentView(R.layout.activity_main);
         //setContentView(R.layout.activity_main_linear);
-        setContentView(R.layout.activity_main_grid);
-        //setContentView(R.layout.activity_main_relative);
+         //setContentView(R.layout.activity_main_grid);
+        setContentView(R.layout.activity_main_relative);
 
         Button myButton = findViewById(R.id.myButton);
         myButton.setOnClickListener( btn ->
-                Toast.makeText(MainActivity.this,getResources().getString(R.string.toast_message) , Toast.LENGTH_LONG).show());
+                Toast.makeText( MainActivity.this,getResources().getString(R.string.toast_message) , Toast.LENGTH_LONG).show());
 
         CheckBox checkBox = findViewById(R.id.CheckBox1);
         checkBox.setOnCheckedChangeListener((cb, b) ->{
