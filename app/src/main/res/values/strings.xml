@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab2</string>
+    <string name="app_name">Lab3</string>
     <string name="hello_message">Hello World!</string>
     <string name="GUI">Look at my GUI:</string>
     <string name="Button1">Click here</string>
@@ -10,6 +10,19 @@
     <string name="switch_message1">The switch is now on</string>
     <string name="switch_message2">The switch is now off</string>
     <string name="undo1">Undo</string>
+
+
+    <string name="textEmail">Enter your email address:</string>
+    <string name="editEmail">Type email here</string>
+    <string name="textPassword">Type your password</string>
+    <string name="logBtn">LOGIN</string>
+    <string name="profile">Your profile</string>
+    <string name="name">Your name</string>
+    <string name="inputName">Enter your name</string>
+    <string name="email">Your email:</string>
+    <string name="inputEmail">Enter email</string>
+    <string name="picture">Your picture:</string>
+    <string name="clickMsg">Click the button above to take a picture</string>
 
 
 </resources>
