@@ -1,52 +1,81 @@
 package com.example.androidlabs;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.Switch;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.snackbar.Snackbar;
-
 public class MainActivity extends AppCompatActivity {
+    SharedPreferences prefs = null;
+    EditText typeField;
+    Button saveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //your program starts here
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_lab3);
 
-        //nothing on screen yet
-        //load your screen
-        //setContentView(R.layout.activity_main);
-        //setContentView(R.layout.activity_main_linear);
-         //setContentView(R.layout.activity_main_grid);
-        setContentView(R.layout.activity_main_relative);
+        // Load SharedPreferences with user email
+        prefs = getSharedPreferences("FileName", Context.MODE_PRIVATE);
+        String savedEmail = prefs.getString("ReserveName", "");
 
-        Button myButton = findViewById(R.id.myButton);
-        myButton.setOnClickListener( btn ->
-                Toast.makeText( MainActivity.this,getResources().getString(R.string.toast_message) , Toast.LENGTH_LONG).show());
+        //TextView tx1 = findViewById(R.id.textEmail);
+        typeField = findViewById(R.id.editEmail);
+        typeField.setText(savedEmail);
 
-        CheckBox checkBox = findViewById(R.id.CheckBox1);
-        checkBox.setOnCheckedChangeListener((cb, b) ->{
-            if (b){
-                Snackbar.make(checkBox, getResources().getString(R.string.switch_message1),Snackbar.LENGTH_LONG).setAction( getResources().getString(R.string.undo1), click -> cb.setChecked(!b)).show();
+        //TextView tx2 = findViewById(R.id.textPassword);
+        EditText typePassword = findViewById(R.id.editPassword);
 
-            }else{
-                Snackbar.make(checkBox,getResources().getString(R.string.switch_message2),Snackbar.LENGTH_LONG).show();
+        //click logButton to profile page
+        Intent goToProfile = new Intent(MainActivity.this, ProfileActivity.class);
+        Button saveBtn = findViewById(R.id.logBtn);
+        saveBtn.setOnClickListener(bt -> {
+            if((typeField.getText().toString().equals("")) || (typePassword.getText().toString().equals(""))){
+                Toast.makeText(this, "Enter email or password", Toast.LENGTH_SHORT).show();
+            }else {
+                goToProfile.putExtra("EMAIL", typeField.getText().toString());
+                startActivity(goToProfile);
             }
         });
+    }
 
-        Switch s= findViewById(R.id.Switch1);
-        s.setOnCheckedChangeListener((cb,b)-> {
-            if (b) {
-                Snackbar.make(checkBox, getResources().getString(R.string.switch_message1), Snackbar.LENGTH_LONG).setAction(getResources().getString(R.string.undo1), click -> cb.setChecked(!b)).show();
+    private void saveSharedPrefs(String stringToSave)
+    {
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("ReserveName", stringToSave);
+        editor.commit();
+    }
 
-            } else {
-                Snackbar.make(checkBox,getResources().getString(R.string.switch_message2), Snackbar.LENGTH_LONG).show();
-            }
-        });
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Use sharedPreferences to save input email
+        saveSharedPrefs(typeField.getText().toString());
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
