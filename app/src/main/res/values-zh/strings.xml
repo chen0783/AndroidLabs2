@@ -11,4 +11,18 @@
     <string name="switch_message1">开</string>
     <string name="switch_message2">关</string>
     <string name="undo1">取消</string>
+
+    <string name="picture_message">你的照片</string>
+    <string name="takePicture_message">点击按钮拍照</string>
+    <string name="textEmail">输入你的邮箱</string>
+    <string name="editEmail">这里输入</string>
+    <string name="textPassword">输入密码</string>
+    <string name="logBtn">登录</string>
+    <string name="profile">你的信息</string>
+    <string name="name">你的名字</string>
+    <string name="inputName">输入名字</string>
+    <string name="email">你的邮箱</string>
+    <string name="inputEmail">输入邮箱</string>
+    <string name="picture">你的照片</string>
+    <string name="clickMsg">点击按钮拍照</string>
 </resources>
