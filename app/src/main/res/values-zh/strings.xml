@@ -34,7 +34,8 @@
     <string name="delDBid">数据库ID为： </string>
     <string name="undoBtn">否</string>
     <string name="delBtn">是</string>
-    <string name="todo">TODO</string>
+    <string name="todo">点它</string>
+    <string name="receive_receive_receive">接收。。。。</string>
 
 
 </resources>

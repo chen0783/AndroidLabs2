@@ -12,28 +12,34 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ProfileActivity extends AppCompatActivity {
-    //step 7: create a class variable call mImageButton
-    private ImageButton mImageButton;
     private static final int REQUEST_IMAGE_CAPTURE = 1;
-    //step 9: create a static String varialbe
-    public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
+    //create a static String variable as the activity name
+    public static final String ACTIVITY_NAME = "activity_profile";
+    private ImageButton mImageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        //get the object nextpage from FirstActivity.java
+
+        //TextView profileTX = findViewById(R.id.profile);
+        //TextView nameTX = findViewById(R.id.name);
+        //TextView emailTX = findViewById(R.id.email);
+        //TextView pictureTX = findViewById(R.id.picture);
+        //TextView clickTx = findViewById(R.id.clickMsg);
+
         Intent fromMain = getIntent();
         String emailStr = fromMain.getStringExtra("EMAIL");
         EditText emailField = findViewById(R.id.inputEmail);
         emailField.setText(emailStr);
+
         EditText nameField = findViewById(R.id.inputName);
 
-        mImageButton= findViewById(R.id.imageButton);
+        mImageButton = (ImageButton)findViewById(R.id.imageButton);
         if (mImageButton != null) {
             mImageButton.setOnClickListener(click -> dispatchTakePictureIntent());
         }
-           Log.e(ACTIVITY_NAME, "In Function:onCreate()");
+
         Button goToChat = (Button)findViewById(R.id.chatBtn);
         if (goToChat != null){
             goToChat.setOnClickListener(click ->{
@@ -41,6 +47,8 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivityForResult(goToChatPage,30);
             });
         }
+
+        Log.e(ACTIVITY_NAME, "In Function:onCreate()");
 
 
     }
@@ -54,44 +62,45 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        Log.e(ACTIVITY_NAME, "In function:"+"onStart()");
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.e(ACTIVITY_NAME, "In function:"+"onResume()");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e(ACTIVITY_NAME, "In function:"+"onPause()");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.e(ACTIVITY_NAME, "In function:"+"onStop()");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.e(ACTIVITY_NAME, "In function:"+"onDestroy()");
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageButton.setImageBitmap(imageBitmap);
         }
-        Log.e(ACTIVITY_NAME, "In function:"+"onActivityResult()");
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e(ACTIVITY_NAME, "In Function:onActivityResult()");
     }
 
+
+    @Override
+    protected void onStart() {
+        Log.e(ACTIVITY_NAME, "In Function:onStart()");
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.e(ACTIVITY_NAME, "In Function:onResume()");
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.e(ACTIVITY_NAME, "In Function:onPause()");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.e(ACTIVITY_NAME, "In Function:onStop()");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.e(ACTIVITY_NAME, "In Function:onDestroy()");
+        super.onDestroy();
+    }
 
 }

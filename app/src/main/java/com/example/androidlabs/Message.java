@@ -1,4 +1,5 @@
 package com.example.androidlabs;
+
 public class Message {
     protected String messages;
     protected boolean isSend;
@@ -25,4 +26,3 @@ public class Message {
     }
 
 }
-
