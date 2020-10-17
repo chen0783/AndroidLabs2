@@ -33,7 +33,8 @@
     <string name="delDBid">The database ID is: </string>
     <string name="undoBtn">No</string>
     <string name="delBtn">Yes</string>
-
+    <string name="receive_receive_receive">receive receive receive</string>
+    <string name="todo">TODO</string>
 
 
 </resources>

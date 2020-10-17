@@ -7,15 +7,16 @@
         android:id="@+id/right_image"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="10dp"
-        android:src="@drawable/row_receive" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/row_receive"
+        android:contentDescription="@string/todo" />
 
     <TextView
         android:id="@+id/receive_msg"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_toLeftOf="@+id/right_image"
-        android:text="receive receive receive"/>
+        android:layout_toStartOf="@+id/right_image"
+        android:text="@string/receive_receive_receive"/>
 
 </RelativeLayout>
