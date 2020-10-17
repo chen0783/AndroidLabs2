@@ -12,8 +12,6 @@
     <string name="switch_message2">关</string>
     <string name="undo1">取消</string>
 
-    <string name="picture_message">你的照片</string>
-    <string name="takePicture_message">点击按钮拍照</string>
     <string name="textEmail">输入你的邮箱</string>
     <string name="editEmail">这里输入</string>
     <string name="textPassword">输入密码</string>
@@ -25,4 +23,17 @@
     <string name="inputEmail">输入邮箱</string>
     <string name="picture">你的照片</string>
     <string name="clickMsg">点击按钮拍照</string>
+
+    <string name="chatBtn">进入聊天框</string>
+    <string name="sendBtn">发送</string>
+    <string name="receiveBtn">接收</string>
+    <string name="chatText">在此输入</string>
+
+    <string name="deletemsg">是否确认删除?</string>
+    <string name="delRow">所选的行是： </string>
+    <string name="delDBid">数据库ID为： </string>
+    <string name="undoBtn">否</string>
+    <string name="delBtn">是</string>
+
+
 </resources>
