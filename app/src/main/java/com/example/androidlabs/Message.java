@@ -3,14 +3,17 @@ package com.example.androidlabs;
 public class Message {
     protected String messages;
     protected boolean isSend;
+    protected long id;
 
-    public Message(String m, boolean i) {
+    //constructor
+    public Message(String m, long id, boolean i) {
         this.setMessage(m);
-        isSend = i;
+        this.setId(id);
+        this.setOwnerOfMessage(i);
     }
 
-    public Message (String n){
-        this(n,true);
+    public Message (String n, boolean checked){
+        this(n, 1, checked);
     }
 
     public String getMessage(){
@@ -24,5 +27,18 @@ public class Message {
     public boolean isSend(){
         return this.isSend;
     }
+
+    public void setOwnerOfMessage(boolean isSend) {
+        this.isSend = isSend;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 
 }

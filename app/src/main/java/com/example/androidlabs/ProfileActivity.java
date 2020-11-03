@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -42,10 +41,12 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         Button goToChat = (Button)findViewById(R.id.chatBtn);
-        goToChat.setOnClickListener( click->{
-            Intent gotoChat=new Intent(ProfileActivity.this,ChatRoomActivity.class);
-            startActivity(gotoChat);
-        } );
+        if (goToChat != null){
+            goToChat.setOnClickListener(click ->{
+                Intent goToChatPage = new Intent(this, ChatRoomActivity.class);
+                startActivityForResult(goToChatPage,30);
+            });
+        }
 
         Log.e(ACTIVITY_NAME, "In Function:onCreate()");
 
@@ -102,8 +103,4 @@ public class ProfileActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    private void onClick(View click) {
-        Intent goToChatPage = new Intent( this, ChatRoomActivity.class );
-        startActivityForResult( goToChatPage, 30 );
-    }
 }
