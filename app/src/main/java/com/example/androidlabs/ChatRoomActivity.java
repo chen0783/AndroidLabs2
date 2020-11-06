@@ -82,7 +82,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             //add new person to list
             chatList.add(messages);
             // update listView;
-            //、、myAdapter = new MyListAdapter();
+            //myAdapter = new MyListAdapter();---1
             //myList.setAdapter(myAdapter);
             myAdapter.notifyDataSetChanged();
             myList.setSelection(myAdapter.getCount()-1);
@@ -91,7 +91,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         //receive button action
         receiveButton.setOnClickListener(click->{
             String receiveMessage = message.getText().toString();
-            //Message newMessage = new Message(receiveMessage, false);
+            //Message newMessage = new Message(receiveMessage, false);---2
             ContentValues newRowValues = new ContentValues();
 
             newRowValues.put(MyOpener.COL_MESSAGE, receiveMessage);
@@ -122,14 +122,14 @@ public class ChatRoomActivity extends AppCompatActivity {
                     .setPositiveButton(R.string.delBtn, (click, arg) -> {
                     // Log.e(tag:"",msg:"remove index is :"+pos);11
                         deleteMessage(selectedMessage);
-                        Log.e("delete:",""+ selectedMessage.getId() );
+                        Log.e("delete:",""+ selectedMessage.getId() ); //add
                         chatList.remove(pos);
                         myAdapter.notifyDataSetChanged();
                     })
                     //action of No button
                     .setNegativeButton(R.string.undoBtn, (click, arg) -> { })
                     .create().show();
-            return false;
+            return false;//change false
         });
         results.moveToFirst();
         printCursor(results);
