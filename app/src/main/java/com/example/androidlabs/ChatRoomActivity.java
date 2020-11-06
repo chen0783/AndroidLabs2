@@ -82,7 +82,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             //add new person to list
             chatList.add(messages);
             // update listView;
-            myAdapter = new MyListAdapter();
+            //、、myAdapter = new MyListAdapter();
             //myList.setAdapter(myAdapter);
             myAdapter.notifyDataSetChanged();
             myList.setSelection(myAdapter.getCount()-1);
@@ -101,7 +101,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             //add new person to list
             chatList.add(messages);
             //update listview
-            myAdapter = new MyListAdapter();
+            //myAdapter = new MyListAdapter();
             //myList.setAdapter(myAdapter);
             myAdapter.notifyDataSetChanged();
             myList.setSelection(myAdapter.getCount()-1);
@@ -120,14 +120,16 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                     //action of Yes button
                     .setPositiveButton(R.string.delBtn, (click, arg) -> {
+                    // Log.e(tag:"",msg:"remove index is :"+pos);11
                         deleteMessage(selectedMessage);
+                        Log.e("delete:",""+ selectedMessage.getId() );
                         chatList.remove(pos);
                         myAdapter.notifyDataSetChanged();
                     })
                     //action of No button
                     .setNegativeButton(R.string.undoBtn, (click, arg) -> { })
                     .create().show();
-            return true;
+            return false;
         });
         results.moveToFirst();
         printCursor(results);
@@ -181,14 +183,14 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             if (getItem(position).isSend()){
                 rowView = inflater.inflate(R.layout.left_row, parent, false);
-                rowMessage = (TextView) rowView.findViewById(R.id.send_msg);
-                ImageView send = (ImageView) rowView.findViewById(R.id.left_image);
+                rowMessage = rowView.findViewById(R.id.send_msg);
+                ImageView send = rowView.findViewById(R.id.left_image);
                 send.setImageResource(R.drawable.row_send);
                 rowMessage.setText(thisRow.getMessage());
             } else {
                 rowView = inflater.inflate(R.layout.right_row, parent, false);
-                rowMessage = (TextView) rowView.findViewById(R.id.receive_msg);
-                ImageView receive = (ImageView) rowView.findViewById(R.id.right_image);
+                rowMessage = rowView.findViewById(R.id.receive_msg);
+                ImageView receive = rowView.findViewById(R.id.right_image);
                 receive.setImageResource(R.drawable.row_receive);
                 rowMessage.setText(thisRow.getMessage());
             }
