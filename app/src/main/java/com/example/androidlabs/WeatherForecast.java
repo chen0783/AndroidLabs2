@@ -223,7 +223,7 @@ public class WeatherForecast extends AppCompatActivity {
             uvText.setText(uvText.getText()+" : "+uv);
             weatherImage.setImageBitmap(image);
 
-            //weatherProgressBar.setVisibility(View.INVISIBLE);
+            weatherProgressBar.setVisibility(View.INVISIBLE);
         }
 
     }
