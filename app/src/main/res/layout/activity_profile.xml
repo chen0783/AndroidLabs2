@@ -18,7 +18,6 @@
             android:id="@+id/profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableTint="@color/colorAccent"
             android:text="@string/profile" />
 
         <TextView
@@ -54,8 +53,7 @@
         <ImageButton
             android:id="@+id/imageButton"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:backgroundTint="@color/colorAccent"
+            android:layout_height="171dp"
             android:src="@android:drawable/picture_frame" />
 
         <TextView
@@ -68,7 +66,12 @@
             android:id="@+id/chatBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
             android:text="@string/chatBtn" />
+
+        <Button
+            android:id="@+id/weatherBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/weatherBtn" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

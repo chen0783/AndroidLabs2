@@ -2,7 +2,7 @@
 <resources>
     <string name="hello_message">你好，世界！</string>
     <string name="Button1">点这里~</string>
-    <string name="app_name">实验-4</string>
+    <string name="app_name">实验6</string>
     <string name="GUI">看我的图表</string>
     <string name="checkBox">看这里！</string>
     <string name="Switch">切换开/ 关</string>
@@ -36,6 +36,11 @@
     <string name="delBtn">是</string>
     <string name="todo">点它</string>
     <string name="receive_receive_receive">接收。。。。</string>
+    <string name="weatherBtn">天气预报</string>
+    <string name="currentTemp">当前气温</string>
+    <string name="minTemp">最低气温</string>
+    <string name="maxTemp">最高气温</string>
+    <string name="UV">紫外线系数</string>
 
 
 </resources>

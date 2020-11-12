@@ -48,6 +48,14 @@ public class ProfileActivity extends AppCompatActivity {
             });
         }
 
+        Button weatherButton = (Button)findViewById(R.id.weatherBtn);
+        if (weatherButton!=null){
+            weatherButton.setOnClickListener(click->{
+                Intent weatherPage = new Intent(this, WeatherForecast.class);
+                startActivityForResult(weatherPage, 30);
+            });
+        }
+
         Log.e(ACTIVITY_NAME, "In Function:onCreate()");
 
 

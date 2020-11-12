@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab5</string>
+    <string name="app_name">Lab6</string>
     <string name="hello_message">Hello World!</string>
     <string name="GUI">Look at my GUI:</string>
     <string name="Button1">Click here</string>
@@ -35,6 +35,11 @@
     <string name="delBtn">Yes</string>
     <string name="receive_receive_receive">receive receive receive</string>
     <string name="todo">TODO</string>
-
+    <!--lab 5-6 chatroom, add weatherforcase button-->
+    <string name="weatherBtn">Weather Forecast</string>
+    <string name="currentTemp">Current Temperature</string>
+    <string name="minTemp">Min Temperature</string>
+    <string name="maxTemp">Max Temperature</string>
+    <string name="UV">UV</string>
 
 </resources>
