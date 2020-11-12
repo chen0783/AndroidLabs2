@@ -1,17 +1,17 @@
 package com.example.androidlabs;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
@@ -108,12 +108,15 @@ public class WeatherForecast extends AppCompatActivity {
                             //If you get here, then you are pointing to a <Weather> start tag
                             currentTemp = xpp.getAttributeValue(null,    "value");
                             publishProgress(25);
+                            Thread.sleep(500);
 
                             min = xpp.getAttributeValue(null, "min");
                             publishProgress(50);
+                            Thread.sleep(500);
 
                             max = xpp.getAttributeValue(null, "max");
                             publishProgress(75);
+                            Thread.sleep(500);
 
                         }else if (xpp.getName().equals("weather")){
                             iconName = xpp.getAttributeValue(null, "icon");
@@ -121,6 +124,7 @@ public class WeatherForecast extends AppCompatActivity {
 
                             // If the Image file exists, then you don’t need to re-download it, just read it from your disk
                             if (fileExistance(iconFileName)){
+                                Log.i("AsyncTask", "found the image locally: " + iconFileName);
                                 FileInputStream fis = null;
                                 try {
                                     fis = openFileInput(iconFileName);
