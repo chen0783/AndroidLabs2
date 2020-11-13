@@ -67,13 +67,6 @@ public class WeatherForecast extends AppCompatActivity {
         Bitmap image;
         String iconName;
 
-//        @Override
-//        protected void onPreExcute(){
-//            currentText = (TextView)findViewById(R.id.currentTemp);
-//            minText = (TextView)findViewById(R.id.minTemp);
-//            maxText = (TextView)findViewById(R.id.maxTemp);
-//            uvText = (TextView)findViewById(R.id.UV);
-//        }
 
         @Override
         protected String doInBackground(String... args){
@@ -108,7 +101,7 @@ public class WeatherForecast extends AppCompatActivity {
                             //If you get here, then you are pointing to a <Weather> start tag
                             currentTemp = xpp.getAttributeValue(null,    "value");
                             publishProgress(25);
-                            Thread.sleep(500);
+                            Thread.sleep(500);//slower speed of bar
 
                             min = xpp.getAttributeValue(null, "min");
                             publishProgress(50);
@@ -124,7 +117,7 @@ public class WeatherForecast extends AppCompatActivity {
 
                             // If the Image file exists, then you don’t need to re-download it, just read it from your disk
                             if (fileExistance(iconFileName)){
-                                Log.i("AsyncTask", "found the image locally: " + iconFileName);
+                                Log.i("AsyncTask", "found the image locally: " + iconFileName);//Check download png
                                 FileInputStream fis = null;
                                 try {
                                     fis = openFileInput(iconFileName);
@@ -132,7 +125,7 @@ public class WeatherForecast extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
                                 image = BitmapFactory.decodeStream(fis);
-                                Log.i("WeatherForecast", "Image already exists");
+                                Log.i("WeatherForecast", "Image already exists");// display image already exists
 
                             }else{
                                 //copy from instruction, step9: download image
@@ -196,7 +189,7 @@ public class WeatherForecast extends AppCompatActivity {
                 //get the double associated with "value"
                 uv = uvReport.getString("value");
                 //      publishProgress(100);
-                Log.i("MainActivity", "The uv is now: " + uvRating) ;
+                Log.i("MainActivity", "The uv is now: " + uv) ;
 
             }
             catch (Exception e)
