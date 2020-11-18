@@ -1,6 +1,7 @@
 package com.example.androidlabs;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,9 +21,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
+
 public class ChatRoomActivity extends AppCompatActivity {
 
     ArrayList<Message> chatList = new ArrayList<>();
+
+    public static final String ITEM_SELECTED = "ITEM";
+    public static final String ITEM_POSITION = "POSITION";
+    public static final String ITEM_ID = "ID";
+    public static final String IS_SEND = "IS_SENT";
+    public static final int EMPTY_ACTIVITY = 345;
+    DetailsFragment dFragment ;
 
     MyListAdapter myAdapter;
     SQLiteDatabase db;
@@ -33,21 +42,21 @@ public class ChatRoomActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
-
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null;
         EditText message = findViewById(R.id.chatText);
         Button sendButton = findViewById(R.id.sendBtn);
         Button receiveButton = findViewById(R.id.receiveBtn);
         ListView myList = findViewById(R.id.theListView);
 
-        //create opener, get database-----2
+        //create opener, get database
         MyOpener opener = new MyOpener(this);
         db = opener.getWritableDatabase();
 
-        //query: select all results---3
+        //query: select all results
         String[] columns = {MyOpener.COL_ID, MyOpener.COL_MESSAGE, MyOpener.COL_SEND_RECEIVE};
         Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
-        //find columns---4
+        //find columns
         int messageColumnIdx = results.getColumnIndex(MyOpener.COL_MESSAGE);
         int idColumnIdx = results.getColumnIndex(MyOpener.COL_ID);
         int checkColumnIdx = results.getColumnIndex(MyOpener.COL_SEND_RECEIVE);
@@ -69,7 +78,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         myList.setSelection(myAdapter.getCount() - 1);
 
 
-        //send button action---5
+        //send button action
         sendButton.setOnClickListener(click ->{
             String sendMessage = message.getText().toString();
             //Message newMessage = new Message(sendMessage,true);
@@ -82,7 +91,7 @@ public class ChatRoomActivity extends AppCompatActivity {
             //add new person to list
             chatList.add(messages);
             // update listView;
-            //myAdapter = new MyListAdapter();---1
+            // myAdapter = new MyListAdapter();
             //myList.setAdapter(myAdapter);
             myAdapter.notifyDataSetChanged();
             myList.setSelection(myAdapter.getCount()-1);
@@ -91,7 +100,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         //receive button action
         receiveButton.setOnClickListener(click->{
             String receiveMessage = message.getText().toString();
-            //Message newMessage = new Message(receiveMessage, false);---2
+            //Message newMessage = new Message(receiveMessage, false);
             ContentValues newRowValues = new ContentValues();
 
             newRowValues.put(MyOpener.COL_MESSAGE, receiveMessage);
@@ -120,17 +129,50 @@ public class ChatRoomActivity extends AppCompatActivity {
 
                     //action of Yes button
                     .setPositiveButton(R.string.delBtn, (click, arg) -> {
-                    // Log.e(tag:"",msg:"remove index is :"+pos);11
                         deleteMessage(selectedMessage);
                         Log.e("delete:",""+ selectedMessage.getId() ); //add
                         chatList.remove(pos);
                         myAdapter.notifyDataSetChanged();
+                        //  ChatRoomActivity parent = (ChatRoomActivity) getActivity();
+                        this.getSupportFragmentManager()
+                                .beginTransaction()
+                                .remove(dFragment)
+                                .commit();
                     })
                     //action of No button
                     .setNegativeButton(R.string.undoBtn, (click, arg) -> { })
                     .create().show();
-            return false;//change false
+            return false; //change from true to false
         });
+
+        myList.setOnItemClickListener((list, item, position, id) -> {
+            //Create a bundle to pass data to the new fragment
+            dFragment = new DetailsFragment();
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString(ITEM_SELECTED, chatList.get(position).getMessage());
+            dataToPass.putInt(ITEM_POSITION, position);
+            dataToPass.putBoolean(IS_SEND, chatList.get(position).isSend);
+            dataToPass.putLong(ITEM_ID, chatList.get(position).getId());
+
+            if(isTablet)
+            {
+                //add a DetailFragment
+                dFragment.setArguments( dataToPass ); //pass it a bundle for information
+                //  dFragment.setTablet(true);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        //   .addToBackStack("AnyName")
+                        .commit(); //actually load the fragment.
+            }
+            else //isPhone
+            {
+                Intent nextActivity = new Intent(ChatRoomActivity.this, EmptyActivity.class);
+                nextActivity.putExtras(dataToPass); //send data to next activity
+                startActivity(nextActivity); //make the transition
+            }
+        });
+
         results.moveToFirst();
         printCursor(results);
         Log.e(ACTIVITY_NAME, "In function: OnCreate()");
@@ -183,14 +225,14 @@ public class ChatRoomActivity extends AppCompatActivity {
 
             if (getItem(position).isSend()){
                 rowView = inflater.inflate(R.layout.left_row, parent, false);
-                rowMessage = rowView.findViewById(R.id.send_msg);
-                ImageView send = rowView.findViewById(R.id.left_image);
+                rowMessage = (TextView) rowView.findViewById(R.id.send_msg);
+                ImageView send = (ImageView) rowView.findViewById(R.id.left_image);
                 send.setImageResource(R.drawable.row_send);
                 rowMessage.setText(thisRow.getMessage());
             } else {
                 rowView = inflater.inflate(R.layout.right_row, parent, false);
-                rowMessage = rowView.findViewById(R.id.receive_msg);
-                ImageView receive = rowView.findViewById(R.id.right_image);
+                rowMessage = (TextView) rowView.findViewById(R.id.receive_msg);
+                ImageView receive = (ImageView) rowView.findViewById(R.id.right_image);
                 receive.setImageResource(R.drawable.row_receive);
                 rowMessage.setText(thisRow.getMessage());
             }

@@ -2,7 +2,7 @@
 <resources>
     <string name="hello_message">你好，世界！</string>
     <string name="Button1">点这里~</string>
-    <string name="app_name">实验6</string>
+    <string name="app_name">实验7</string>
     <string name="GUI">看我的图表</string>
     <string name="checkBox">看这里！</string>
     <string name="Switch">切换开/ 关</string>
@@ -41,6 +41,10 @@
     <string name="minTemp">最低气温</string>
     <string name="maxTemp">最高气温</string>
     <string name="UV">紫外线系数</string>
+    <string name="msg">在此输入信息</string>
+    <string name="fragchk">是否发送信息</string>
+    <string name="hidebtn">隐藏</string>
+    <string name="hello_blank_fragment">欢迎</string>
 
 
 </resources>

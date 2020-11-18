@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ChatRoomActivity">
+
+    <ListView
+        android:id="@+id/theListView"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:divider="#FF9800"
+        android:dividerHeight="5px"
+        android:transcriptMode="alwaysScroll" />
+
+    <Button
+        android:id="@+id/sendBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:text="@string/sendBtn"/>
+
+    <EditText
+        android:id="@+id/chatText"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="@string/chatText"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/sendBtn"
+        android:layout_marginBottom="0dp"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/receiveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@id/theListView"
+        android:text="@string/receiveBtn"/>
+
+
+
+    <FrameLayout
+        android:id="@+id/fragmentLocation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000C0B"
+        android:layout_toRightOf="@id/theListView"/>
+
+</RelativeLayout>
+
